@@ -6,12 +6,12 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Router,
 } from "react-router-dom";
 
 import './global.css'
-// import { BrowserRouter } from "react-router-dom";
-import RoutesConfig from './RoutesConfig';
 import Login from './pages/Login';
+import FormProcesso from './pages/FormProcesso';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -20,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/" element={<App />}/>
         <Route index element={<App />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cadastroProcesso" element={<FormProcesso />} />
 
     </Routes>
 </BrowserRouter>
