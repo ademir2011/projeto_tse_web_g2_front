@@ -1,10 +1,19 @@
+import Header from "./components/Header"
+import Pautas from "./pages/Pautas"
+import { useState } from 'react'
+import { Dialog, Transition  } from '@headlessui/react'
 
 
 function App() {
+  
 
   return (
     <div className="App">
-      <h1>Hello World</h1>
+      <Header></Header>
+
+      <Pautas/>
+              
+      
         
     </div>
   )
