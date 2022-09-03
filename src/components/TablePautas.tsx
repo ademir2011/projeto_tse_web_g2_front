@@ -1,7 +1,8 @@
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Processos from '../pages/Processos';
 import { DateTime } from 'luxon';
+
 
 interface Processos{
     id: string,
@@ -42,6 +43,9 @@ interface TablePautasProps{
     items: ArrayPautas
 }
 
+
+// Componente principal que apresenta as tabelas
+
 export default function TablePautas({ campos, items }: TablePautasProps) {
 
     const [isPauta, setIsPauta] = useState(true)
@@ -56,9 +60,12 @@ export default function TablePautas({ campos, items }: TablePautasProps) {
           setProcessos(processos)
     }
 
+
     return (
 
         <>
+
+        
         
         {/* Visualização da tabela de Pautas */}
         {isPauta  &&

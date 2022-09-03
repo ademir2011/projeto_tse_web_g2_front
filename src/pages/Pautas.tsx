@@ -1,9 +1,15 @@
 import TablePautas from "../components/TablePautas"
-
+import { useState, useEffect } from 'react'
+import {api} from '../service/api';
+import {getPautas} from '../service/auth.service'
 
 // Apresentar as pautas via tabela
 
 export default function Pautas(){
+
+    const [pautas, setPautas] = useState([])
+
+
     const fieldsTable = [
         {name: 'orgao', label: 'Órgão Judicante' },
         {name: 'sistema', label: 'Sistema' },
@@ -36,11 +42,17 @@ export default function Pautas(){
         ]
       }]
 
+      useEffect(() => {
+        getPautas()
+          .then((response) => setPautas(response.data))
+          .catch((error) => console.log(error))
+      }, [])
+
       return (
         <>
             <TablePautas 
               campos={fieldsTable}
-              items={example}
+              items={pautas}
             >
 
             </TablePautas>

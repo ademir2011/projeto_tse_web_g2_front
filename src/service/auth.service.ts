@@ -1,7 +1,20 @@
 import {api} from "./api";
 import axios from 'axios'
+import { DateTime } from 'luxon';
+import authHeader from './auth-header'
 
-const API_URL = "http://localhost:8080/api/";
+
+
+interface ProcessoReq{
+  numero: string,
+  partes: string,
+  relator: string,
+  resumo: string,
+  ordem?: number,
+}
+
+
+const API_URL = import.meta.env.VITE_API_URL
 
 export const register = (username: string, email: string, password: string) => {
   return api.post('/auth/signup', {
@@ -13,7 +26,7 @@ export const register = (username: string, email: string, password: string) => {
 
 export const login = (username: string, password: string) => {
   return api
-    .post('auth/signin', {
+    .post('/auth/signin', {
       username,
       password,
     })
@@ -27,14 +40,47 @@ export const login = (username: string, password: string) => {
     });
 };
 
-export const processos = () => {
+
+// Rotas de Processos
+
+export const getProcessos = () => {
     return api 
-      .get('processos')
+      .get('/processos')
       .then((response) => {
-       console.log(response)
+       
         return response.data;
       });
-  };
+};
+
+
+export const postProcesso = (processo:ProcessoReq) => {
+
+  const {Authorization} = authHeader();
+  
+  return api 
+    .post('/processo', 
+      JSON.stringify(processo),{
+        headers:{
+          "Content-Type": "application/json",
+          "Authorization": Authorization
+        }
+      }
+        
+      )
+    .then((response) => {
+      console.log(response.data)
+      return response.data;
+    });
+};
+
+export const getPautas = () => {
+  return api 
+    .get('/pautas')
+    .then((response) => {
+      
+      return response.data;
+    });
+};
 
 export const logout = () => {
   localStorage.removeItem("user");
@@ -44,5 +90,12 @@ export const getCurrentUser = () => {
   const userStr = localStorage.getItem("user");
   if (userStr) return JSON.parse(userStr);
 
+  return null;
+};
+
+export const getUserToken = () => {
+  const userStr = localStorage.getItem("user");
+  if (userStr) return JSON.parse(userStr).token;
+  
   return null;
 };

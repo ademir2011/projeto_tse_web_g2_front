@@ -4,7 +4,7 @@ import Header from '../components/Header'
 import Loading from '../components/Loagind';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 // import { RouteComponentProps } from "react-router-dom";
-import {login, processos} from '../service/auth.service';
+import {login} from '../service/auth.service';
 import React, { FormEvent, useState } from "react";
 
 import { History } from "history";
@@ -37,7 +37,7 @@ export default function Login(){
     login(username, password).then(
       (res) => {
         console.log(res.token)
-        window.history.pushState("", "" ,"/profile");
+        window.history.pushState("", "" ,"/cadastroProcesso");
         window.location.reload();
       },
       (error) => {
