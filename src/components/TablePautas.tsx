@@ -11,7 +11,7 @@ interface Processos{
     relator: string,
     resumo: string,
     ordem: number,
-    dataCriacao: string
+    dataCriacao: []
 }
 
 interface ArrayProcessos extends Array<Processos>{}
@@ -21,10 +21,10 @@ interface PautaProps{
     orgaoJudicante: string,
     sistemaPauta: string,
     meioJulgamento: string,
-    dataSessao: string,
-    dataDivulgacao: string,
-    dataPublicacao: string,
-    dataCriacao: string,
+    dataSessao: [],
+    dataDivulgacao: [],
+    dataPublicacao: [],
+    dataCriacao: [],
     processos: ArrayProcessos
 }
 
@@ -48,6 +48,7 @@ interface TablePautasProps{
 
 export default function TablePautas({ campos, items }: TablePautasProps) {
 
+    // console.log(items)
     const [isPauta, setIsPauta] = useState(true)
     const [isProcesso, setIsProcesso] = useState(false)
     // Lista de processos
@@ -60,13 +61,13 @@ export default function TablePautas({ campos, items }: TablePautasProps) {
           setProcessos(processos)
     }
 
+    function createDate(array: any){
+        return new Date(array[0], array[1], array[2])
+    }
 
     return (
 
-        <>
-
-        
-        
+        <>        
         {/* Visualização da tabela de Pautas */}
         {isPauta  &&
             <div className="overflow-x-auto relative">
@@ -94,16 +95,20 @@ export default function TablePautas({ campos, items }: TablePautasProps) {
                                 <td className="py-3 px-4">{item.sistemaPauta}</td>
                                 <td className="py-3 px-4">{item.meioJulgamento}</td>
                                 <td className="py-3 px-4">{
-                                    DateTime.fromISO(item.dataSessao).toFormat('dd/MM/yyyy')
+                                    DateTime.fromISO(createDate(item.dataSessao).toISOString()).toFormat('dd/MM/yyyy')
+                                    // item.dataSessao
                                 }</td>
                                 <td className="py-3 px-4">{
-                                    DateTime.fromISO(item.dataDivulgacao).toFormat('dd/MM/yyyy')
+                                    DateTime.fromISO(createDate(item.dataDivulgacao).toISOString()).toFormat('dd/MM/yyyy')
+                                    // item.dataDivulgacao
                                 }</td>
                                 <td className="py-3 px-4">{
-                                    DateTime.fromISO(item.dataPublicacao).toFormat('dd/MM/yyyy')
+                                    DateTime.fromISO(createDate(item.dataPublicacao).toISOString()).toFormat('dd/MM/yyyy')
+                                    // item.dataPublicacao
                                 }</td>
                                 <td className="py-3 px-4">{
-                                    DateTime.fromISO(item.dataCriacao).toFormat('dd/MM/yyyy')
+                                    DateTime.fromISO(createDate(item.dataCriacao).toISOString()).toFormat('dd/MM/yyyy')
+                                    // createDate(item.dataCriacao).toISOString
                                 }</td>
                             </tr>
                         ))}

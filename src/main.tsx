@@ -12,6 +12,7 @@ import {
 import './global.css'
 import Login from './pages/Login';
 import FormProcesso from './pages/FormProcesso';
+import FormJulgamentoPauta from './pages/FormJulgamentoPauta';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
@@ -20,7 +21,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/" element={<App />}/>
         <Route index element={<App />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/cadastroProcesso" element={<FormProcesso />} />
+        <Route path="/cadastros" element={<FormProcesso />} />
+        <Route path="/cadastroJulgamento" element={<FormJulgamentoPauta />} />
+
 
     </Routes>
 </BrowserRouter>

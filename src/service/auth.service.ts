@@ -13,6 +13,17 @@ interface ProcessoReq{
   ordem?: number,
 }
 
+interface PautaProps{
+  orgaoJudicante: string,
+  sistemaPauta: string,
+  meioJulgamento: string,
+  dataSessao: Date,
+  dataDivulgacao: Date,
+  dataPublicacao: Date,
+  dataCriacao?: string,
+  processos?: any
+}
+
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -73,11 +84,34 @@ export const postProcesso = (processo:ProcessoReq) => {
     });
 };
 
+// Métodos para pauta
+
 export const getPautas = () => {
   return api 
     .get('/pautas')
     .then((response) => {
-      
+      console.log(response)
+      return response.data;
+    });
+};
+
+
+export const postPauta = (pauta:PautaProps) => {
+
+  const {Authorization} = authHeader();
+  
+  return api 
+    .post('/pauta', 
+      JSON.stringify(pauta),{
+        headers:{
+          "Content-Type": "application/json",
+          "Authorization": Authorization
+        }
+      }
+        
+      )
+    .then((response) => {
+      console.log(response.data)
       return response.data;
     });
 };

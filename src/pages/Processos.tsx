@@ -12,7 +12,7 @@ interface Processos{
     relator: string,
     resumo: string,
     ordem: number,
-    dataCriacao: string
+    dataCriacao: []
 }
 
 

@@ -7,7 +7,7 @@ interface Processos{
     relator: string,
     resumo: string,
     ordem: number,
-    dataCriacao: string
+    dataCriacao: []
 }
 
 interface ArrayProcessos extends Array<Processos>{}
@@ -26,6 +26,11 @@ interface TableProcessosProps{
 
 export default function TableProcessos({ campos, items }: TableProcessosProps) {
    
+    function createDate(array: any){
+        return new Date(array[0], array[1], array[2])
+    }
+
+
     return (
 
         <div className="overflow-x-auto relative">
@@ -50,7 +55,7 @@ export default function TableProcessos({ campos, items }: TableProcessosProps) {
                             <td className="py-3 px-4">{item.relator}</td>
                             <td className="py-3 px-4">{item.resumo}</td>
                             <td className="py-3 px-4">{
-                                DateTime.fromISO(item.dataCriacao).toFormat('dd/MM/yyyy')
+                                DateTime.fromISO(createDate(item.dataCriacao).toISOString()).toFormat('dd/MM/yyyy')
                             }</td>
                         </tr>
                     ))}

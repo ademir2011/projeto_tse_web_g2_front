@@ -7,7 +7,7 @@ import {getPautas} from '../service/auth.service'
 
 export default function Pautas(){
 
-    const [pautas, setPautas] = useState([])
+    const [pautas, setPautas] = useState<any>([])
 
 
     const fieldsTable = [
@@ -43,9 +43,15 @@ export default function Pautas(){
       }]
 
       useEffect(() => {
-        getPautas()
-          .then((response) => setPautas(response.data))
-          .catch((error) => console.log(error))
+        async function carregarDados(){
+          const response = await getPautas();
+          // console.log(response)
+          setPautas(response)
+        }
+        
+        carregarDados()
+        .catch(console.error)
+        //console.log("Teste")
       }, [])
 
       return (

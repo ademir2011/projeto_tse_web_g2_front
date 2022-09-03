@@ -37,7 +37,7 @@ export default function Login(){
     login(username, password).then(
       (res) => {
         console.log(res.token)
-        window.history.pushState("", "" ,"/cadastroProcesso");
+        window.history.pushState("", "" ,"/cadastros");
         window.location.reload();
       },
       (error) => {
