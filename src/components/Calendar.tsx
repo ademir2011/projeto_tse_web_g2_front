@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { ArrowLeftIcon, ArrowRightIcon, PlusCircleIcon } from "@heroicons/react/20/solid";
+import { ArrowLeftIcon, ArrowRightIcon, PlusCircleIcon, PencilSquareIcon} from "@heroicons/react/20/solid";
 import classNames from "./helper";
 
 
@@ -20,19 +20,20 @@ const monthNames = [
 
 const days = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
 
-interface EventProps{
+interface EventProps {
+    id: string
     event_date: Date,
     event_title: string,
     event_theme: string
-} 
+}
 
-interface EventPropsArray extends Array<EventProps>{}
+interface EventPropsArray extends Array<EventProps> { }
 
-interface Props{
+interface Props {
     events: EventPropsArray
 }
 
-export default function Calendar({events}: Props){
+export default function Calendar({ events }: Props) {
     const date = new Date();
     const [month, setMonth] = useState(date.getMonth());
     const [year, setYear] = useState(date.getFullYear());
@@ -49,14 +50,14 @@ export default function Calendar({events}: Props){
     };
 
     const hasEvent = (dateEvent: Date) => {
-        for(let i = 0; i < events.length; i++){
-            if(events[i].event_date.toDateString() === dateEvent.toDateString()){
+        for (let i = 0; i < events.length; i++) {
+            if (events[i].event_date.toDateString() === dateEvent.toDateString()) {
                 return true;
             }
         }
-        
+
         return false
-        
+
     };
 
     const getNoOfDays = () => {
@@ -137,6 +138,7 @@ export default function Calendar({events}: Props){
         );
     };
 
+
     const nextMonth = () => {
         setMonth(month + 1);
         getNoOfDays();
@@ -162,18 +164,35 @@ export default function Calendar({events}: Props){
         }
     };
 
+    function cadastroJultamento(ano: any, mes: any, dia: any) {
+        localStorage.setItem("ano", JSON.stringify(ano));
+        localStorage.setItem("mes", JSON.stringify(mes));
+        localStorage.setItem("dia", JSON.stringify(dia));
+
+        window.history.pushState("", "", "/cadastroJulgamento");
+        window.location.reload();
+
+    }
+
+    function podeAlterar(data: Date) {
+        if (data > new Date()) {
+            return true
+        }
+        return false
+    }
+
     return (
         <>
             <div className="container mx-auto py-4 px-6">
                 <div className="bg-white rounded-lg shadow overflow-hidden">
                     <div className="flex items-center justify-between px-6 py-4 border-b">
                         <div>
-              <span className="text-lg font-bold text-gray-800">
-                {monthNames[month]}
-              </span>
+                            <span className="text-lg font-bold text-gray-800">
+                                {monthNames[month]}
+                            </span>
                             <span className="ml-1 text-lg text-gray-600 font-normal">
-                {year}
-              </span>
+                                {year}
+                            </span>
                         </div>
                         <div className="border rounded-lg px-1 pt-1">
                             {/* Previous Month Button */}
@@ -204,7 +223,7 @@ export default function Calendar({events}: Props){
                         >
                             {days.map((day) => (
                                 <div key={day} className="px-2 py-2 w-[14.28%]">
-                                    <div  className="text-gray-600 text-sm uppercase tracking-wide font-bold text-center">
+                                    <div className="text-gray-600 text-sm uppercase tracking-wide font-bold text-center">
                                         {day}
                                     </div>
                                 </div>
@@ -219,7 +238,7 @@ export default function Calendar({events}: Props){
                             ))}
                             {numOfDays.map((date, index) => (
                                 <div
-                                    
+
                                     key={index}
                                     className="px-4 pt-2 border-r border-b relative h-32 w-[14.28%]"
                                 >
@@ -231,24 +250,27 @@ export default function Calendar({events}: Props){
                                             "inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100"
                                         )}
                                     >
-                                        
+
                                         {date}
-                                     
+
 
                                     </div>
 
                                     {/* Adicionando os botões */}
                                     <>
-                                    {hasEvent(new Date(year, month, date)) ? 
-                                        console.log("Tem evento"): 
-                                        <button onClick={() => console.log(date)}>
-                                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 ">
-                                            <PlusCircleIcon className="w-7 h-7 flex items-center justify-center overflow-hidden text-indigo-600 hover:text-indigo-900 active:text-indigo-700 transition" aria-hidden="true" />
-                                            </span>
-                                        </button>
-                                    }
+                                        {hasEvent(new Date(year, month, date)) ?
+                                            console.log("Tem evento") :
+                                            <button onClick={() =>
+                                                // console.log(date)
+                                                cadastroJultamento(year, month - 1, date)
+                                            }>
+                                                <span className="absolute  bottom-1 left-0 flex items-center pl-3 ">
+                                                    <PlusCircleIcon className="w-7 h-7 flex items-center justify-center overflow-hidden text-indigo-600 hover:text-indigo-900 active:text-indigo-700 transition" aria-hidden="true" />
+                                                </span>
+                                            </button>
+                                        }
                                     </>
-                                       
+
                                     {/* <div className="overflow-y-auto mt-1 h-20">
                                     </div> */}
 
@@ -261,8 +283,9 @@ export default function Calendar({events}: Props){
                                                     new Date(year, month, date).toDateString()
                                             )
                                             .map((e) => (
+
                                                 <div
-                                                    key={e.event_title}
+                                                    key={e.id}
                                                     className={classNames(
                                                         eventClass(e.event_theme),
                                                         "px-2 py-1 rounded-lg mt-1 overflow-hidden border"
@@ -271,10 +294,29 @@ export default function Calendar({events}: Props){
                                                     <p className="text-sm truncate leading-tight">
                                                         {e.event_title}
                                                     </p>
+
+
+                                                    {/* Adicionando os botões */}
+
+                                                    {podeAlterar(new Date(year, month, date)) && (
+                                                        <button onClick={() =>
+                                                            // console.log(date)
+                                                            cadastroJultamento(year, month - 1, date)
+                                                        }>
+                                                            <span className="absolute bottom-1 left-0  flex items-center pl-3 ">
+                                                                <PencilSquareIcon className="w-7 h-7  flex items-center justify-center overflow-hidden text-indigo-600 hover:text-indigo-900 active:text-indigo-700 transition" aria-hidden="true" />
+                                                            </span>
+                                                        </button>
+                                                    )}
+
                                                 </div>
+
+
+
+
                                             ))}
 
-                                            {/* Filtro de não eventos
+                                        {/* Filtro de não eventos
                                              {events
                                             .filter(
                                                 (e) =>

@@ -61,13 +61,19 @@ export default function FormJulgamentoPauta(dataSessao: Date) {
 
         // console.log(getUserToken());
 
+        // Pegando as info de data;
+        
+        const ano = Number(localStorage.getItem("ano"));
+        const mes = Number(localStorage.getItem("mes"));
+        const dia = Number(localStorage.getItem("dia"));
         const nowDate = new Date()
+
 
         const pauta = {
             orgaoJudicante: selectedTurma.name,
             sistemaPauta: selectedSistema.name,
             meioJulgamento: selectedMeio.name,
-            dataSessao: new Date(nowDate.getFullYear(), nowDate.getMonth() - 1, nowDate.getDate()),
+            dataSessao: new Date(ano, mes, dia),
             dataDivulgacao: new Date(nowDate.getFullYear(), nowDate.getMonth() - 1, nowDate.getDate()),
             dataPublicacao: new Date(nowDate.getFullYear(), nowDate.getMonth() - 1, nowDate.getDate())
         }

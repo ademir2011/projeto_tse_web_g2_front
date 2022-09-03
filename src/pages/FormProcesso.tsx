@@ -19,6 +19,7 @@ interface Processo {
 
 
 interface EventProps {
+  id: string
   event_date: Date,
   event_title: string,
   event_theme: string
@@ -77,6 +78,7 @@ export default function FormProcesso() {
       // console.log(pauta)
       arrayEvents.push(
         {
+          id: pauta.id,
           event_date: createDate(pauta.dataSessao),
           event_title: pauta.orgaoJudicante,
           event_theme: 'red'
