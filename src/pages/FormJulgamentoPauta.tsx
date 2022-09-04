@@ -35,7 +35,7 @@ const meios = [
     { name: 'PRESENCIAL' }
 ]
 
-export default function FormJulgamentoPauta(dataSessao: Date) {
+export default function FormJulgamentoPauta() {
     const [selectedTurma, setSelectedTurma] = useState(turmas[0])
     const [selectedSistema, setSelectedSistema] = useState(sistemas[0])
     const [selectedMeio, setSelectedMeio] = useState(meios[0])
@@ -68,6 +68,9 @@ export default function FormJulgamentoPauta(dataSessao: Date) {
         const dia = Number(localStorage.getItem("dia"));
         const nowDate = new Date()
 
+        localStorage.removeItem("ano");
+        localStorage.removeItem("mes");
+        localStorage.removeItem("dia");
 
         const pauta = {
             orgaoJudicante: selectedTurma.name,
@@ -85,6 +88,9 @@ export default function FormJulgamentoPauta(dataSessao: Date) {
         postPauta(pauta)
             .then(
                 (res) => {
+
+                   
+
                     setLoading(false);
                     window.history.pushState("", "", "/cadastros");
                     window.location.reload();
@@ -102,7 +108,7 @@ export default function FormJulgamentoPauta(dataSessao: Date) {
     return (
         <>
 
-            <Header />
+            <Header logado={true} />
             <h3 className="font-medium leading-tight text-5xl m-2 ml-6 text-indigo-500">Cadastro de Pauta</h3>
 
             <div className="hidden sm:block" aria-hidden="true">
@@ -295,7 +301,7 @@ export default function FormJulgamentoPauta(dataSessao: Date) {
 
                                     </div>
                                 </div>
-                                <div className="mt-20 bg-gray-50 px-4 py-3 text-right sm:px-6">
+                                <div className="mt-40 bg-gray-50 px-4 py-3 text-right sm:px-6">
                                     <button
                                         type="submit"
                                         className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"

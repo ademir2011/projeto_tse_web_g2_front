@@ -10,6 +10,7 @@
   "dependencies": {
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^2.0.8",
+    "@thaddeusjiang/react-sortable-list": "^0.0.3",
     "axios": "^0.27.2",
     "formik": "^2.2.9",
     "luxon": "^3.0.3",

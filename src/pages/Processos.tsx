@@ -28,8 +28,8 @@ export default function Processos({processos}: ProcessoProps){
     const fieldsTable = [
         {name: 'numero', label: 'Número' },
         {name: 'partes', label: 'Partes' },
-        {name: 'relator', label: 'Meio de Julgamento' },
-        {name: 'resumo', label: 'Data de Sessão' },
+        {name: 'relator', label: 'Relator' },
+        {name: 'resumo', label: 'Resumo' },
         {name: 'dataCriacao', label: 'Data Divulgação' }
         
     ]

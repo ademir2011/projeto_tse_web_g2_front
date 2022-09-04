@@ -129,7 +129,7 @@ export default function FormProcesso() {
   return (
     <>
 
-      <Header />
+      <Header logado={true} />
 
       <div className="w-full px-2 py-16 sm:px-0">
         <Tab.Group >

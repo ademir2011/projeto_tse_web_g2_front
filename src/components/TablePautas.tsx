@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, KeyboardEvent  } from 'react'
 import Processos from '../pages/Processos';
 import { DateTime } from 'luxon';
 
@@ -51,6 +51,7 @@ export default function TablePautas({ campos, items }: TablePautasProps) {
     // console.log(items)
     const [isPauta, setIsPauta] = useState(true)
     const [isProcesso, setIsProcesso] = useState(false)
+    const [info, setInfo] = useState('')
     // Lista de processos
     const [processos, setProcessos] = useState<ArrayProcessos>([])
   
@@ -61,6 +62,34 @@ export default function TablePautas({ campos, items }: TablePautasProps) {
           setProcessos(processos)
     }
 
+    function myFunction(key: KeyboardEvent<HTMLImageElement>) {
+        // Declare variables
+        let input, filter, table, tr, td, tdSessao, i, txtValue, textSessao;
+        input = document.getElementById("myInput");
+        filter = info.toUpperCase();
+        console.log(info)
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        
+        console.log(tr)
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          tdSessao =  tr[i].getElementsByTagName("td")[3];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            txtValue = txtValue + " "+ tdSessao.textContent || tdSessao.innerText
+            console.log(txtValue)
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+
+
     function createDate(array: any){
         return new Date(array[0], array[1], array[2])
     }
@@ -70,8 +99,26 @@ export default function TablePautas({ campos, items }: TablePautasProps) {
         <>        
         {/* Visualização da tabela de Pautas */}
         {isPauta  &&
+
+           
+            
+
+
             <div className="overflow-x-auto relative">
-                <table className="w-full text-sm text-left">
+                    <>
+                    <h3 className="font-medium leading-tight text-5xl m-2 ml-6 text-indigo-500">Lista de Pautas</h3>
+                    <input  type="text" 
+                        id="myInput" 
+                        className='my-2 w-full rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
+                        onKeyUp={myFunction} 
+                        placeholder="Pesquise por órgão judicante ou data da sessão..."
+                        onChange={event => {setInfo(event.target.value)}}
+                        >
+
+                        </input>
+                    </>
+                
+                <table id="myTable" className="w-full text-sm text-left">
                     <thead className="text-xs text-gray-700 uppercase bg-slate-100">
                         <tr>
                             {campos.map( (campo) => (

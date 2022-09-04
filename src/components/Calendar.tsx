@@ -164,12 +164,22 @@ export default function Calendar({ events }: Props) {
         }
     };
 
-    function cadastroJultamento(ano: any, mes: any, dia: any) {
+    // Cadastro de Julgamento
+    function cadastroJulgamento(ano: any, mes: any, dia: any) {
         localStorage.setItem("ano", JSON.stringify(ano));
         localStorage.setItem("mes", JSON.stringify(mes));
         localStorage.setItem("dia", JSON.stringify(dia));
 
         window.history.pushState("", "", "/cadastroJulgamento");
+        window.location.reload();
+
+    }
+
+    // Vincular Processos
+    function vincular(idPauta: any) {
+        localStorage.setItem("idPauta", JSON.stringify(idPauta));
+ 
+        window.history.pushState("", "", "/vincularProcesso");
         window.location.reload();
 
     }
@@ -262,7 +272,7 @@ export default function Calendar({ events }: Props) {
                                             console.log("Tem evento") :
                                             <button onClick={() =>
                                                 // console.log(date)
-                                                cadastroJultamento(year, month - 1, date)
+                                                cadastroJulgamento(year, month - 1, date)
                                             }>
                                                 <span className="absolute  bottom-1 left-0 flex items-center pl-3 ">
                                                     <PlusCircleIcon className="w-7 h-7 flex items-center justify-center overflow-hidden text-indigo-600 hover:text-indigo-900 active:text-indigo-700 transition" aria-hidden="true" />
@@ -301,7 +311,7 @@ export default function Calendar({ events }: Props) {
                                                     {podeAlterar(new Date(year, month, date)) && (
                                                         <button onClick={() =>
                                                             // console.log(date)
-                                                            cadastroJultamento(year, month - 1, date)
+                                                            vincular(e.id)
                                                         }>
                                                             <span className="absolute bottom-1 left-0  flex items-center pl-3 ">
                                                                 <PencilSquareIcon className="w-7 h-7  flex items-center justify-center overflow-hidden text-indigo-600 hover:text-indigo-900 active:text-indigo-700 transition" aria-hidden="true" />
