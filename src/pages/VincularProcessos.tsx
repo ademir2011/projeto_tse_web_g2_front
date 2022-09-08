@@ -101,7 +101,7 @@ export default function VincularProcesso() {
         console.log(pro)
 
         if (pro[0].id) {
-            const response = desvincularProcesso(pauta, pro[0])
+            const response = await desvincularProcesso(pauta, pro[0])
             // console.log(response)
             window.history.pushState("", "", "/cadastros");
             window.location.reload();
@@ -133,7 +133,7 @@ export default function VincularProcesso() {
         // const response = postVinculacaoListPauta(pauta, items)
         // console.log(response)
         // vinculando os processos
-        postVinculacaoListPauta(pauta, items)
+        await postVinculacaoListPauta(pauta, items)
             .then(
                 (res) => {
                     console.log(res)
@@ -179,7 +179,7 @@ export default function VincularProcesso() {
 
                                         <div className="lg:col-span-1 col-span-4 sm:col-span-4">
                                             <label htmlFor="orgao" className="block text-sm font-medium text-gray-700">
-                                                Órgão Judicante
+                                                Processos à vincular
                                             </label>
 
                                             <Combobox value={selectedProcesso} onChange={setSelectedProcesso}>
@@ -273,8 +273,8 @@ export default function VincularProcesso() {
                                                 items={items}
                                                 setItems={setItems}
                                                 itemRender={({ item }: ItemRenderProps) => (
-                                                    <div className="flex items-center justify-center rounded-lg w-1/2 h-10 m-2 text-white bg-indigo-700 text-center" >
-                                                        <span className="relative right-12 flex rounded-lg bg-indigo-700 p-2 hover:bg-indigo-600">
+                                                    <div className="flex items-center justify-start rounded-lg w-1/2 h-10 m-2 text-white bg-indigo-700 text-center" >
+                                                        <span className="ml-1  flex rounded-lg bg-indigo-700 p-2 hover:bg-indigo-600">
 
                                                             <ArrowsUpDownIcon className="h-4 w-4 text-white" aria-hidden="true" />
                                                         </span>

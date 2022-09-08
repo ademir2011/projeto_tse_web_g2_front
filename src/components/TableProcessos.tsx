@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import { KeyboardEvent, useState, Fragment } from 'react'
+import { KeyboardEvent, useState, useEffect, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { DocumentMagnifyingGlassIcon, UserGroupIcon } from '@heroicons/react/20/solid'
 
@@ -31,11 +31,13 @@ interface TableProcessosProps {
 export default function TableProcessos({ campos, items }: TableProcessosProps) {
 
     const [info, setInfo] = useState('')
-    let [isOpen, setIsOpen] = useState(true)
+    let [isOpen, setIsOpen] = useState(false)
 
-    let [isOpenPartes, setIsOpenPartes] = useState(true)
+    let [isOpenPartes, setIsOpenPartes] = useState(false)
 
 
+   
+  
     function closeModal() {
         setIsOpen(false)
     }

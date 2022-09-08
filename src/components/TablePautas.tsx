@@ -59,8 +59,16 @@ export default function TablePautas({ campos, items }: TablePautasProps) {
           // Vai mudar o valor booleano 
           setIsPauta(!isPauta)
           setIsProcesso(!isProcesso)
-          setProcessos(processos)
+          // Mandar ordenado pela ordem
+          setProcessos(processos.sort((a, b) => (a.ordem < b.ordem) ? -1 : 1))
     }
+
+    // useEffect(() =>
+    // {
+    //     items.sort((a, b) => (a.ordem < b.ordem) ? -1 : 1)
+    // }
+    // , [])
+
 
     function myFunction(key: KeyboardEvent<HTMLImageElement>) {
         // Declare variables

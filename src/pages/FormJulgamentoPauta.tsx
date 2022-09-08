@@ -85,7 +85,7 @@ export default function FormJulgamentoPauta() {
 
         // const response = postPauta(pauta)
         // console.log(response)
-        postPauta(pauta)
+        await postPauta(pauta)
             .then(
                 (res) => {
 
