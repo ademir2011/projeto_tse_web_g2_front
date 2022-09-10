@@ -6,6 +6,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 // import { RouteComponentProps } from "react-router-dom";
 import {login} from '../service/auth.service';
 import React, { FormEvent, useState } from "react";
+import logoTST from '/images/logo_jt_tst.svg';
 
 import { History } from "history";
 
@@ -68,9 +69,9 @@ export default function Login(){
             <div className="w-full max-w-md space-y-8">
               <div>
                 <img
-                  className="mx-auto h-12 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
-                  alt="Workflow"
+                  className="mx-auto w-auto"
+                  src={logoTST}
+                  alt="Justiça do trabalho - Tribunal Superior do Trabalho"
                 />
                 <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
                   Entre agora com sua conta

@@ -140,7 +140,7 @@ export default function TablePautas({ campos, items }: TablePautasProps) {
                     <tbody>
                         {items.map( (item) => (
                             <tr key={item.id} 
-                            className="text-sm border border-solid border-b-2 bg-white transition duration-300 ease-in-out hover:bg-gray-100  hover:shadow-lg focus:bg-gray-100 focus:shadow-lg focus:outline-none" 
+                            className="text-sm border border-solid border-b-2 bg-white cursor-pointer transition duration-300 ease-in-out hover:bg-gray-100  hover:shadow-lg focus:bg-gray-100 focus:shadow-lg focus:outline-none" 
                             onClick={() => {
                                     console.log(item)
                                     toggleTableVisibility(item.processos)

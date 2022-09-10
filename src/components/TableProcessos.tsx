@@ -96,7 +96,7 @@ export default function TableProcessos({ campos, items }: TableProcessosProps) {
                 <h3 className="font-medium leading-tight text-5xl m-2 ml-6 text-indigo-500">Lista de Processos</h3>
                 <input type="text"
                     id="myInput"
-                    className='my-2 w-full rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
+                    className='my-4 w-full rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
                     onKeyUp={myFunctionProcessos}
                     placeholder="Pesquise pelo número, partes ou relator..."
                     onChange={event => { setInfo(event.target.value) }}
@@ -195,6 +195,8 @@ export default function TableProcessos({ campos, items }: TableProcessosProps) {
                                 
                             </td>
                             <td className="py-3 px-4">{item.relator}</td>
+
+
 
                             {/*  Resumo*/}
                             <td className="py-3 px-4">

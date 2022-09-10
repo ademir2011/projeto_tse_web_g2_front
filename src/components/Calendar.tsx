@@ -49,12 +49,20 @@ export default function Calendar({ events }: Props) {
         return today.toDateString() === d.toDateString();
     };
 
-    const hasEvent = (dateEvent: Date) => {
+    const hasEvent_e_dataAnterior = (dateEvent: Date) => {
+  
         for (let i = 0; i < events.length; i++) {
             if (events[i].event_date.toDateString() === dateEvent.toDateString()) {
                 return true;
             }
         }
+         // verificar se é data anterior
+         const today = new Date()
+         if(dateEvent < today){
+             return true;
+         }
+        
+        
 
         return false
 
@@ -268,7 +276,7 @@ export default function Calendar({ events }: Props) {
 
                                     {/* Adicionando os botões */}
                                     <>
-                                        {hasEvent(new Date(year, month, date)) ?
+                                        {hasEvent_e_dataAnterior(new Date(year, month, date)) ?
                                             console.log("Tem evento") :
                                             <button onClick={() =>
                                                 // console.log(date)

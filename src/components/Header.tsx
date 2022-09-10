@@ -2,6 +2,7 @@
 import { MegaphoneIcon } from '@heroicons/react/24/outline'
 import React, { FormEvent, useState, useEffect } from "react";
 import { logout } from '../service/auth.service';
+import logo from '/images/logo.svg';
 
 interface LogadoProps{
   logado: boolean
@@ -24,9 +25,15 @@ export default function Header({logado}: LogadoProps) {
       <div className="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">
         <div className="flex flex-row items-center justify-between">
           <div className="flex w-0 flex-1 items-center">
-            <span className="flex rounded-lg bg-indigo-800 p-2 hover:bg-indigo-700">
 
-              <MegaphoneIcon className="h-6 w-6 text-white" aria-hidden="true" onClick={() => {
+
+            <span className="cursor-pointer flex rounded-lg bg-indigo-800 p-2 hover:bg-indigo-700">
+
+              {/* <MegaphoneIcon className="h-6 w-6 text-white" aria-hidden="true" onClick={() => {
+                location.href = "/"
+              }} /> */}
+              
+              <img src={logo} alt="Logo do TST" onClick={() => {
                 location.href = "/"
               }} />
             </span>

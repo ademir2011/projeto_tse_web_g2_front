@@ -10,6 +10,7 @@ prática da Residência em TI do IMD com parceria do TST.
  - TypeScript
  - Headless UI
  - Phosphor Icons
+ - docker
 
 ### Execução
 Crie um arquivo chamado .env.local e adicione uma variável 'VITE_API_URL=' 

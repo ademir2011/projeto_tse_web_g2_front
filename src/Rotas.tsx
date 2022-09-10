@@ -21,7 +21,6 @@ export default function Rotas() {
         const user = getCurrentUser()
         if (user) {
             setCurrentUser(user);
-
         }
         eventBus.on("logout", logOut);
         return () => {

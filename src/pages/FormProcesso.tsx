@@ -76,14 +76,48 @@ export default function FormProcesso() {
 
     response.map((pauta: any) => {
       // console.log(pauta)
-      arrayEvents.push(
-        {
-          id: pauta.id,
-          event_date: createDate(pauta.dataSessao),
-          event_title: pauta.orgaoJudicante,
-          event_theme: 'red'
-        }
-      )
+      // Condições para especificar as cores
+      if(pauta.orgaoJudicante.search('Turma') !== -1){
+        arrayEvents.push(
+          {
+            id: pauta.id,
+            event_date: createDate(pauta.dataSessao),
+            event_title: pauta.orgaoJudicante,
+            event_theme: 'red'
+          }
+        )
+      }
+      if(pauta.orgaoJudicante.search('SD') !== -1){
+        arrayEvents.push(
+          {
+            id: pauta.id,
+            event_date: createDate(pauta.dataSessao),
+            event_title: pauta.orgaoJudicante,
+            event_theme: 'green'
+          }
+        )
+      }
+      if((pauta.orgaoJudicante.search('Pleno') !== -1) || (pauta.orgaoJudicante.search('Especial') !== -1)){
+        arrayEvents.push(
+          {
+            id: pauta.id,
+            event_date: createDate(pauta.dataSessao),
+            event_title: pauta.orgaoJudicante,
+            event_theme: 'yellow'
+          }
+        )
+      }
+      if(pauta.orgaoJudicante.search('SbDI') !== -1){
+        arrayEvents.push(
+          {
+            id: pauta.id,
+            event_date: createDate(pauta.dataSessao),
+            event_title: pauta.orgaoJudicante,
+            event_theme: 'blue'
+          }
+        )
+      }
+      
     })
 
     setEvents(arrayEvents)
@@ -131,7 +165,7 @@ export default function FormProcesso() {
 
       <Header logado={true} />
 
-      <div className="w-full px-2 py-16 sm:px-0">
+      <div className="w-full px-2 py-8 sm:px-2">
         <Tab.Group >
           <Tab.List className="flex space-x-1 rounded-xl bg-indigo-700 p-1">
             <Tab className={({ selected }) =>

@@ -273,8 +273,8 @@ export default function VincularProcesso() {
                                                 items={items}
                                                 setItems={setItems}
                                                 itemRender={({ item }: ItemRenderProps) => (
-                                                    <div className="flex items-center justify-start rounded-lg w-1/2 h-10 m-2 text-white bg-indigo-700 text-center" >
-                                                        <span className="ml-1  flex rounded-lg bg-indigo-700 p-2 hover:bg-indigo-600">
+                                                    <div className="cursor-grab active:cursor-grabbing flex items-center justify-start rounded-lg w-1/2 h-10 m-2 text-white bg-indigo-700 text-center" >
+                                                        <span className=" ml-1  flex rounded-lg bg-indigo-700 p-2 hover:bg-indigo-600">
 
                                                             <ArrowsUpDownIcon className="h-4 w-4 text-white" aria-hidden="true" />
                                                         </span>
