@@ -125,11 +125,11 @@ export default function TableProcessos({ campos, items }: TableProcessosProps) {
                             
                             {/* Partes */}
                             <td className="py-3 px-4">
-                            <div className="flex items-center justify-center">
+                            <div className="flex items-center justify-start">
                                     <button
                                         type="button"
                                         onClick={openModalPartes}
-                                        className="relative right-8 rounded-md bg-black bg-opacity-20  text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                        className="rounded-md bg-black bg-opacity-20  text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                                     >
                                         <span className="flex rounded-lg bg-indigo-800 p-2 hover:bg-indigo-700">
 
@@ -201,11 +201,11 @@ export default function TableProcessos({ campos, items }: TableProcessosProps) {
                             {/*  Resumo*/}
                             <td className="py-3 px-4">
 
-                                <div className="flex items-center justify-center">
+                                <div className="flex items-center justify-start">
                                     <button
                                         type="button"
                                         onClick={openModal}
-                                        className="relative right-8 rounded-md bg-black bg-opacity-20  text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                                        className="rounded-md bg-black bg-opacity-20  text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                                     >
                                         <span className="flex rounded-lg bg-indigo-800 p-2 hover:bg-indigo-700">
 

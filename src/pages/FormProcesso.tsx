@@ -165,7 +165,7 @@ export default function FormProcesso() {
 
       <Header logado={true} />
 
-      <div className="w-full px-2 py-8 sm:px-2">
+      <div className="w-full px-2 py-2 sm:px-2">
         <Tab.Group >
           <Tab.List className="flex space-x-1 rounded-xl bg-indigo-700 p-1">
             <Tab className={({ selected }) =>
